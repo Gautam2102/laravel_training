@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-
+    //  add table 
     protected $table='comments';
+
+    // timestamps
     public $timestamps=false;
 
-public function post(){
+    // add post
+    public function post(){
 
-return $this->belongsTo(Post::class);
-
-
-}
+     return $this->belongsTo(Post::class);
+   }
 
 }

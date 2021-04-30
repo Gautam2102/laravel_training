@@ -16,12 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-
+// call a seeder function method
 $this->call([
-
-
 Dummydata::class,
-
 ]);
 
     }

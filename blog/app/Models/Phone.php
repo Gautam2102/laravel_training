@@ -9,9 +9,12 @@ class Phone extends Model
 {
     use HasFactory;
 
+    // add table 
     protected $table='phones';
-    public $timestamps=false;
 
+    // flase time stamps
+    public $timestamps=false;
+//  belongs to user
 public function user(){
 
 return $this->belongsTo('App\Models\User');

@@ -16,13 +16,11 @@ class Dummydata extends Seeder
     public function run()
     {
         //
-
+//add dummy data in database
 DB::table('members')->insert([
-
 'name'=>' gautam kant',
 'email'=>'aryan@gmail.com',
 'Address'=>'bihar'
-
 ]);
 
     }

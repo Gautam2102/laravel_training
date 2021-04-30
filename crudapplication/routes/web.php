@@ -15,7 +15,6 @@ use App\Http\Controllers\CrudController;
 |
 */
 
-
 // show form
 Route::get('/',[CrudController::class,'index']);
 
