@@ -37,7 +37,7 @@ Route::get('/delete/{id}',[CrudController::class,'delete']);
 Route::get('/login',function(){
 
 if(session()->has('id')){
-
+    
 return view('/home');
 
 }

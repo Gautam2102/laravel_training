@@ -15,9 +15,13 @@ class Comment extends Model
     public $timestamps=false;
 
     // add post
-    public function post(){
-
-     return $this->belongsTo(Post::class);
-   }
+    public function post()
+    {
+       return $this->belongsTo(Post::class);
+    }
 
 }
+
+
+
+
