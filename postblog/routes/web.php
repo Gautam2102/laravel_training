@@ -41,4 +41,7 @@ Route::view('/add-post','addpost');
 // Add post 
 Route::post('/add-post',[AdminController::class,'addpost']);
 
+// show post
+Route::get('/show-post/{id}',[AdminController::class,'showpost']);
+
 

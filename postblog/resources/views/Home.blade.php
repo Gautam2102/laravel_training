@@ -3,15 +3,16 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <style>
-  .navbar {
+  .navbar
+   {
     margin-bottom: 0;
-  }
+   }
 
-  section {
+  section
+  {
     width: 100%;
     float: left;
   }
-
   .banner-section {
     background-image: url("https://static.pexels.com/photos/373912/pexels-photo-373912.jpeg");
     background-size: cover;

@@ -23,6 +23,18 @@
         background: #4CAF50;
     }
 
+    .alert {
+
+        color: red;
+
+    }
+    .success{
+
+
+        color:green;
+        text-align:center;
+    }
+
     .container {
         max-width: 400px;
         width: 100%;
@@ -148,54 +160,57 @@
 
 
 <div class="container">
-    <form id="contact" action="/add-post" method="post">
+    <form id="contact" action="/add-post" method="post"enctype="multipart/form-data">
         @csrf
         @if ($message = Session::get('success'))
 
-        <div class="alert alert-success alert-block">
+        <div class="success">
 
-            <button type="button" class="close" data-dismiss="alert">×</button>
-
+         
             <strong>{{ $message }}</strong>
 
         </div>
-
+        <li>  <a href="{{ URL('/show-post/'.session('id'))}}">Show</a></li>
         @endif
         <h3>Post Blog</h3>
-
+         <input type="hidden"name="id"value="{{session('id')}}">
         <fieldset>
-            <input name=" Title" placeholder="Enter Title" type="text">
+            <input name=" title" placeholder="Enter Title" type="text">
+            @error('title')
+
+            <div class="alert">{{$message}}</div>
+
+            @enderror
         </fieldset>
-        @error('title')
 
-        <div class="alert alert-danger">{{$message}}</div>
-
-        @enderror
         <fieldset>
             <textarea placeholder="Type your body here...." name="body" tabindex="5"></textarea>
+            @error('body')
+
+            <div class="alert">{{$message}}</div>
+
+            @enderror
         </fieldset>
-        @error('body')
 
-        <div class="alert alert-danger">{{$message}}</div>
-
-        @enderror
         <fieldset>
             <input placeholder="Description" name="description" type="text">
+            @error('description')
+
+            <div class="alert">{{$message}}</div>
+
+            @enderror
         </fieldset>
-        @error('description')
 
-        <div class="alert alert-danger">{{$message}}</div>
-
-        @enderror
         <fieldset>
             Insert Image:
-            <input type="file" name="file">
+            <input type="file" name="image">
+            @error('image')
+
+            <div class="alert">{{$message}}</div>
+
+            @enderror
         </fieldset>
-        @error('file')
 
-        <div class="alert alert-danger">{{$message}}</div>
-
-        @enderror
         <button type="submit" name="submit" class="btn-info btn-block">Post</button>
 
     </form>

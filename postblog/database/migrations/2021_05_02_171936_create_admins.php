@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminsTable extends Migration
+class CreateAdmins extends Migration
 {
     /**
      * Run the migrations.
@@ -19,8 +19,8 @@ class CreateAdminsTable extends Migration
             $table->string('body');
             $table->string('dscription');
             $table->string('image');
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
