@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
@@ -25,7 +24,7 @@ class UserController extends Controller
         $insert->save(); 
         return redirect('signup')->with('success','user registration successfully');
     }
-    
+
     // user login
     public function login(Request $request)
     { 
