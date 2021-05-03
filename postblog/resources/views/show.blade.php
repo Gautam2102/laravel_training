@@ -2,6 +2,7 @@
 
 @section('content')
 
+<!-- show post data from database -->
 @foreach($user as $row)
 
 <div class="container">
