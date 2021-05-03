@@ -22,7 +22,7 @@
         <div class="col-sm-2" style="padding:15px 15px 15px 15px">
             <h4 class="media-heading">Title</h4>
             <p>{{$row->title}}</p>
-            <img class="media-object" width="100px" height="100px" src="{{ asset('images/' .$row->image) }}">
+            <img class="media-object" width="100px" height="100px" src="{{asset('images/' .$row->image) }}">
         </div>
         <div class="col-sm-6" style="padding:15px 15px 15px 15px">
             <h4 class="media-heading">Body</h4>

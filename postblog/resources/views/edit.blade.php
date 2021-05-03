@@ -158,21 +158,13 @@
         color: #888;
     }
 </style>
-
-
 <div class="container">
-    <form id="contact" action="/updatepost" method="post" >
+    <form id="contact" action="/postupdate" method="post">
         @csrf
-        @if ($message = Session::get('success'))
-        <div class="success">
-            <strong>{{ $message }} <a href="{{ URL('/show-post/'.session('id'))}}"style="text-align:center;">Show</a></strong>
-        </div>
-       
-        @endif
-        <h3>Post Blog</h3>
+
         <input type="hidden" name="id" value="{{$data->id}}">
         <fieldset>
-            <input name=" title" placeholder="Enter Title" type="text" value="{{$data->title}}">
+            <input type="text" name=" title" placeholder="Enter Title" value="{{$data->title}}">
             @error('title')
 
             <div class="alert">{{$message}}</div>
@@ -181,7 +173,7 @@
         </fieldset>
 
         <fieldset>
-            <textarea placeholder="Type your body here...." name="body" >{{$data->body}}</textarea>
+            <textarea type="text" placeholder="Type your body here...." name="body">{{$data->body}}</textarea>
             @error('body')
 
             <div class="alert">{{$message}}</div>
@@ -190,7 +182,7 @@
         </fieldset>
 
         <fieldset>
-            <input placeholder="Description" name="description" type="text"value="{{$data->dscription}}">
+            <input type="text" placeholder="Description" name="description" value="{{$data->dscription}}">
             @error('description')
 
             <div class="alert">{{$message}}</div>

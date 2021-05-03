@@ -43,20 +43,19 @@ class AdminController extends Controller
     }
 
     // Update Post
-    public function updatepost(Request $request)
+    public function postupdate(Request $request)
     {
         $request->validate
         ([
             'title'=>'required',
             'body'=>'required',
             'description'=>'required',
-            'image' =>'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+           
         ]);
         $update=Admin::find($request->id);
         $update->title=$request->title;
         $update->body=$request->body;
         $update->dscription=$request->description;
-        $update->user_id=$request->user_id;
         $update->save();
         return redirect('add-post')->with('success','one row updated successfully');    
     }
@@ -66,7 +65,7 @@ class AdminController extends Controller
     {
         $delete =Admin::find($id);
         $delete->delete();
-        return redirect('show-post')->with('success','one row deleted successfullly');
+        return redirect('dashboard')->with('success','one row deleted successfullly');
     }
 
     // logout 

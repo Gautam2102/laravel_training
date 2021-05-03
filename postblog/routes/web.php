@@ -54,6 +54,6 @@ Route::get('/deletepost/{id}',[AdminController::class,'deletepost']);
 Route::get('/logout',[AdminController::class,'logout']);
 
 // update post
-Route::post('/updatepost',[AdminController::class,'updatepost']);
+Route::post('/postupdate',[AdminController::class,'postupdate']);
 
 
