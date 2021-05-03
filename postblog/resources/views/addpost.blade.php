@@ -168,10 +168,10 @@
         <div class="success">
 
 
-            <strong>{{ $message }}</strong>
+            <strong>{{ $message }} <a href="{{ URL('/show-post/'.session('id'))}}"style="text-align:center;">Show</a></strong>
 
         </div>
-        <li> <a href="{{ URL('/show-post/'.session('id'))}}">Show</a></li>
+       
         @endif
         <h3>Post Blog</h3>
         <input type="hidden" name="id" value="{{session('id')}}">

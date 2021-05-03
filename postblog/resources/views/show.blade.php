@@ -27,7 +27,7 @@
     </div>
 </div> -->
 <div class="container">
-    <div class="row" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div class="row" style="border-left:5px solid red; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius:10px">
         <div class="col-sm-2" style="padding:15px 15px 15px 15px">
             <h4 class="media-heading">Title</h4>
             <p>{{$row->title}}</p>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-sm-2" style="padding:15px 15px 15px 15px">
 
-            <p class="text-right">Description<br />{{$row->dscription}}</p>
+            <p class="text-right"><h4 class="media-heading">Description</h4>{{$row->dscription}}</p>
         </div>
         <div class="col-sm-2" style="padding:50px 15px 15px 15px">
 
