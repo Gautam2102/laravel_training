@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Phone;
 use App\Models\User;
@@ -14,16 +13,17 @@ class UserController extends Controller
 
 
 // insert record 
-public function insertRecord(){
-$phone =new Phone;
-$phone->phone="1234";
-$user=new User;
-$user->name="Gautam kant";
-$user->email="gautamka@gmail.com";
-$user->password=Hash::make('aryan');
-$user->save();
-$user->phone()->save($phone);
-return 'Record has been';
+public function insertRecord()
+{
+    $phone =new Phone;
+    $phone->phone="1234";
+    $user=new User;
+    $user->name="Gautam kant";
+    $user->email="gautamka@gmail.com";
+    $user->password=Hash::make('aryan');
+    $user->save();
+    $user->phone()->save($phone);
+    return 'Record has been';
 
 }
 // fetch data

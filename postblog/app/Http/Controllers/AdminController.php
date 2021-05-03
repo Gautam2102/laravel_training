@@ -25,14 +25,13 @@ class AdminController extends Controller
         $addpost->image=$imageName;
         $addpost->user_id=$request->id;
         $addpost->save();
-        return redirect('add-post')->with('success','One post added successfully');
-        
+        return redirect('add-post')->with('success','One post added successfully');    
     }
 
     // show post 
     public function showpost($id)
     {
         $users =Admin::where('user_id',$id)->get();
-        return view('show',$users);
+        return view('show',['user'=>$users]);
     }
 }

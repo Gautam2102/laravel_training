@@ -28,11 +28,12 @@
         color: red;
 
     }
-    .success{
+
+    .success {
 
 
-        color:green;
-        text-align:center;
+        color: green;
+        text-align: center;
     }
 
     .container {
@@ -160,20 +161,20 @@
 
 
 <div class="container">
-    <form id="contact" action="/add-post" method="post"enctype="multipart/form-data">
+    <form id="contact" action="/add-post" method="post" enctype="multipart/form-data">
         @csrf
         @if ($message = Session::get('success'))
 
         <div class="success">
 
-         
+
             <strong>{{ $message }}</strong>
 
         </div>
-        <li>  <a href="{{ URL('/show-post/'.session('id'))}}">Show</a></li>
+        <li> <a href="{{ URL('/show-post/'.session('id'))}}">Show</a></li>
         @endif
         <h3>Post Blog</h3>
-         <input type="hidden"name="id"value="{{session('id')}}">
+        <input type="hidden" name="id" value="{{session('id')}}">
         <fieldset>
             <input name=" title" placeholder="Enter Title" type="text">
             @error('title')
