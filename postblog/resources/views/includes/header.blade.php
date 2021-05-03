@@ -18,7 +18,7 @@
 
 <body>
   <nav class="navbar navbar-default banner">
-    <div class="container-fluid">
+    <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -36,8 +36,8 @@
         <ul class="nav navbar-nav navbar-right navbar-nav-primary">
           <li><a href="#">Home</a></li>
           <li><a href="/add-post">Add Post</a></li>
-
           <li> <a href="{{ URL('/show-post/'.session('id'))}}">Show</a></li>
+          <li><a href="/logout">Logout</a></li>
 
         </ul>
       </div><!-- /.navbar-collapse -->

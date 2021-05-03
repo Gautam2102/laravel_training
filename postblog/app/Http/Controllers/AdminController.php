@@ -34,4 +34,13 @@ class AdminController extends Controller
         $users =Admin::where('user_id',$id)->get();
         return view('show',['user'=>$users]);
     }
+
+    // logout 
+    public function logout()
+    {
+        if(session()->pull('id'))
+        {
+        return redirect('signin');
+        }
+    }
 }
