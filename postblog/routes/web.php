@@ -44,7 +44,16 @@ Route::post('/add-post',[AdminController::class,'addpost']);
 // show post
 Route::get('/show-post/{id}',[AdminController::class,'showpost']);
 
+// Edit Post
+Route::get('/editpost/{id}',[AdminController::class,'editpost']);
+
+// Delete Post
+Route::get('/deletepost/{id}',[AdminController::class,'deletepost']);
+
 // logout
 Route::get('/logout',[AdminController::class,'logout']);
+
+// update post
+Route::post('/updatepost',[AdminController::class,'updatepost']);
 
 

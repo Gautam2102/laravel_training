@@ -110,10 +110,12 @@ echo 'wrong  password';
 }
 
 // logout 
-public function logout(){
-if(session()->pull('id')){
-return redirect('/login');
-}
+public function logout()
+{
+    if(session()->pull('id'))
+    {
+    return redirect('/login');
+    }
 }
 
   

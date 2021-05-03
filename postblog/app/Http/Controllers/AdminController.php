@@ -35,6 +35,40 @@ class AdminController extends Controller
         return view('show',['user'=>$users]);
     }
 
+    // Edit post
+    public function editpost($id)
+    {
+        $data=Admin::find($id);
+        return view('edit',['data'=>$data]);
+    }
+
+    // Update Post
+    public function updatepost(Request $request)
+    {
+        $request->validate
+        ([
+            'title'=>'required',
+            'body'=>'required',
+            'description'=>'required',
+            'image' =>'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $update=Admin::find($request->id);
+        $update->title=$request->title;
+        $update->body=$request->body;
+        $update->dscription=$request->description;
+        $update->user_id=$request->user_id;
+        $update->save();
+        return redirect('add-post')->with('success','one row updated successfully');    
+    }
+
+    // Delete Post
+    public function deletepost($id)
+    {
+        $delete =Admin::find($id);
+        $delete->delete();
+        return redirect('show-post')->with('success','one row deleted successfullly');
+    }
+
     // logout 
     public function logout()
     {

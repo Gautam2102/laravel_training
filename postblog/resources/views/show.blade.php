@@ -3,6 +3,17 @@
 @section('content')
 
 <!-- show post data from database -->
+@if ($message = Session::get('success'))
+
+<div class="alert alert-success alert-block">
+
+    <button type="button" class="close" data-dismiss="alert">×</button>
+
+    <strong>{{ $message }}</strong>
+
+</div>
+
+@endif
 @foreach($user as $row)
 
 <div class="container">
@@ -24,9 +35,9 @@
         </div>
         <div class="col-sm-2" style="padding:50px 15px 15px 15px">
 
-            <span><i class="glyphicon glyphicon-edit"></i> Edit</span></li> |
-
-            <span><i class="glyphicon glyphicon-trash"></i> Delete</span>
+            <span><a href="{{ URL('/editpost/'.$row->id)}}"><i class="glyphicon glyphicon-edit"></i> Edit</a></span> |
+            <span><a href="{{ URL('/deletepost/'.$row->id)}}"><i class="glyphicon glyphicon-trash"></i>
+                    Delete</a></span>
 
         </div>
     </div>
