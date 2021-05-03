@@ -65,7 +65,7 @@ class AdminController extends Controller
     {
         $delete =Admin::find($id);
         $delete->delete();
-        return redirect('dashboard')->with('success','one row deleted successfullly');
+        return back()->with('success','one row deleted successfullly');
     }
 
     // logout 
