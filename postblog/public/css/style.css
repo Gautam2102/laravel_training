@@ -36,10 +36,18 @@ body {
 }
 
 .container {
-    max-width: 400px;
+  max-width: 400px;
     width: 100%;
     margin: 0 auto;
     position: relative;
+}
+
+.container-fluid{
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #FFF;
+
 }
 
 #contact input[type="text"],

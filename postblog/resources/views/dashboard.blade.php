@@ -3,5 +3,6 @@
 
 <!--include body -->
 @section('content')
+
    
 @endsection

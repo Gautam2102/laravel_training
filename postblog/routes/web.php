@@ -17,14 +17,14 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', function () 
 {
-     return view('Home');
+     return view('user_includes.Home');
 });
 
 //  user signup 
-Route::view('/signup','signup');
+Route::view('/signup','user_includes.signup');
 
 // user signin
-Route::view('/signin','signin');
+Route::view('/signin','user_includes.signin');
 
 // insert form data
 Route::post('/insert',[UserController::class,'insert']);
@@ -33,7 +33,7 @@ Route::post('/insert',[UserController::class,'insert']);
 Route::post('/login',[UserController::class,'login']);
 
 // user dashboard 
-Route::view('/dashboard','dashboard');
+
 
 // view post form
 Route::view('/add-post','addpost');
@@ -42,7 +42,7 @@ Route::view('/add-post','addpost');
 Route::post('/add-post',[AdminController::class,'addpost']);
 
 // show post
-Route::get('/show-post/{id}',[AdminController::class,'showpost']);
+Route::get('/show-post',[AdminController::class,'showpost']);
 
 // Edit Post
 Route::get('/editpost/{id}',[AdminController::class,'editpost']);
@@ -55,5 +55,12 @@ Route::get('/logout',[AdminController::class,'logout']);
 
 // update post
 Route::post('/postupdate',[AdminController::class,'postupdate']);
+
+// Middleware
+Route::group(['middleware' => 'CustAuth'], function () {
+     Route::get('dashboard', function () {
+         return view('dashboard');
+     });
+ });
 
 

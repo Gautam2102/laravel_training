@@ -56,9 +56,7 @@
       <input type="file" class="form-control"  name="image">
     </div>
    @error('image')
-
-<div class="alert alert-danger">{{$message}}</div>
-
+   <div class="alert alert-danger">{{$message}}</div>
    @enderror
     <button type="submit" class="btn btn-info btn-block">Submit</button>
     <a href="/show" class="btn btn-warning btn-block">Show Data</a>
