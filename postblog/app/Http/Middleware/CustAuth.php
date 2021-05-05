@@ -17,12 +17,11 @@ class CustAuth
      */
     public function handle(Request $request, Closure $next)
     {   
-        if(!session()->has('id'))
+        if(!$request->session()->has('id'))
         {
             return redirect('signin');
         }
 
-            
         return $next($request);
     }
 }

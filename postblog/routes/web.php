@@ -17,7 +17,11 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', function () 
 {
-     return view('user_includes.Home');
+    if(!session()->has('id'))
+    {
+        return view('user_includes.Home');
+    }
+        return redirect('dashboard');
 });
 
 //  user signup 
@@ -31,9 +35,6 @@ Route::post('/insert',[UserController::class,'insert']);
 
 // login
 Route::post('/login',[UserController::class,'login']);
-
-// user dashboard 
-
 
 // view post form
 Route::view('/add-post','addpost');

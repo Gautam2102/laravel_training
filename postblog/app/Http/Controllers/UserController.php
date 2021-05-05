@@ -38,7 +38,7 @@ class UserController extends Controller
         $data= DB::table('users')->where('email',$email)->get();
         if($data->count() > 0)
         {
-             $oldpassword=$data['0']->password;
+            $oldpassword=$data['0']->password;
             $id=$data['0']->id;
             Hash::check($password,$oldpassword);
             $request->session()->put('id',$id);
