@@ -36,7 +36,7 @@ Route::get('/addpost', [HomeController::class, 'addpost'])->name('addpost');
 Route::post('/addpost', [HomeController::class, 'insertpost'])->name('insertpost');
 
 // insert post
-Route::get('/editpost/{id}', [HomeController::class, 'editpost']);
+Route::get('/editpost/{id}', [HomeController::class, 'editpost'])->name('editpost');
 
 // Delete post
-Route::get('/deletepost/{id}', [HomeController::class, 'deletepost']);
+Route::get('/deletepost/{id}', [HomeController::class, 'deletepost'])->name('deletepost');
