@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 use App\Models\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\HomeController;
 
 class StorePostRequest extends FormRequest
 {

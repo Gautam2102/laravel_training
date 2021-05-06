@@ -1,22 +1,23 @@
-@extends('master')
+@extends('layouts.app')
 
 @section('content')
-
-<!-- show post data from database -->
+<div class="container">
 @if ($message = Session::get('success'))
 
-<div class="alert alert-info alert-block">
+<div class="alert alert-success alert-block">
 
     <button type="button" class="close" data-dismiss="alert">×</button>
 
     <strong>{{ $message }}</strong>
 
 </div>
-
+</div>
 @endif
-@foreach($user as $row)
+@if(!empty($data) && $data->count())
+@foreach($data as $row)
 
-<div class="container-fluid">
+<div class="container">
+
     <div class="row"
         style="border-left:5px solid red; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius:10px">
         <div class="col-sm-2" style="padding:15px 15px 15px 15px">
@@ -36,9 +37,11 @@
         </div>
         <div class="col-sm-2" style="padding:50px 15px 15px 15px">
 
-            <span><a href="{{ URL('/editpost/'.$row->id)}}"><i class="glyphicon glyphicon-edit"></i> Edit</a></span>
+            <span><a href="{{ URL('/editpost/'.$row->id)}}" class="btn btn-info"><i
+                        class="glyphicon glyphicon-edit"></i> Edit</a></span>
             |
-            <span><a href="{{ URL('/deletepost/'.$row->id)}}"><i class="glyphicon glyphicon-trash"></i>
+            <span><a href="{{ URL('/deletepost/'.$row->id)}}" class="btn btn-danger"><i
+                        class="glyphicon glyphicon-trash"></i>
                     Delete</a></span>
 
         </div>
@@ -46,4 +49,30 @@
 </div><br />
 </div>
 @endforeach
+@else
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('! Empty') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+
+                    {{ __('sorry No Data Available here go and add post !') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+<div class="">
+    {{$data->links()}}
+
+</div>
+
 @endsection

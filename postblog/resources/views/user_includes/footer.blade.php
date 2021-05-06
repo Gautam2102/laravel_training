@@ -1,1 +1,0 @@
-<section class="footer-link"><a href="" target="_blank">View Our All Snnips</a></section>

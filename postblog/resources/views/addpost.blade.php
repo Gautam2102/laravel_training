@@ -1,76 +1,97 @@
+@extends('layouts.app')
 
-
-
-<!-- include header and footer  -->
-@extends('master')
-
-<!--include body -->
 @section('content')
-
 <div class="container">
-    <form id="contact" action="/add-post" method="post" enctype="multipart/form-data">
-        @csrf
-        @if ($message = Session::get('success'))
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center text-info">{{ __('Add Post') }}</div>
+                @if ($message = Session::get('success'))
 
-        <div class="success">
+                <div class="alert alert-success alert-block">
 
+                    <button type="button" class="close" data-dismiss="alert">×</button>
 
-            <strong>{{ $message }} <a href="/show-post"style="text-align:center;">Show</a></strong>
+                    <strong>{{ $message }}</strong>
 
+                </div>
+
+                @endif
+                <div class="card-body">
+                    <form method="POST" action="{{ route('addpost') }}" enctype='multipart/form-data'>
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <div class="form-group row">
+                            <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control   " name="title" value="{{ old('title') }}"
+                                    autofocus>
+
+                                @error('title')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="body" class="col-md-4 col-form-label text-md-right">{{ __('Body') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea type="text" class="form-control " name="body"
+                                    value="{{ old('body') }}"></textarea>
+
+                                @error('body')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="description"
+                                    value="{{ old('description') }}">
+
+                                @error('description')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="image"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Upload Image') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="file" class="form-control" name="image">
+                                @error('image')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    {{ __('Post') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-       
-        @endif
-        <h3>Post Blog</h3>
-        <input type="hidden" name="id" value="{{session('id')}}">
-        <fieldset>
-            <input name=" title" placeholder="Enter Title" type="text"value="{{ old('title') }}">
-            @error('title')
-
-            <div class="alert">{{$message}}</div>
-
-            @enderror
-        </fieldset>
-
-        <fieldset>
-            <textarea placeholder="Type your body here...." name="body" tabindex="5"value="{{ old('body') }}"></textarea>
-            @error('body')
-
-            <div class="alert">{{$message}}</div>
-
-            @enderror
-        </fieldset>
-
-        <fieldset>
-            <input placeholder="Description" name="description" type="text"value="{{ old('description') }}">
-            @error('description')
-
-            <div class="alert">{{$message}}</div>
-
-            @enderror
-        </fieldset>
-
-        <fieldset>
-            Insert Image:
-            <input type="file" name="image"value="{{ old('image') }}">
-            @error('image')
-
-            <div class="alert">{{$message}}</div>
-
-            @enderror
-        </fieldset>
-
-        <button type="submit" name="submit" class="btn-info btn-block">Post</button>
-
-    </form>
+    </div>
 </div>
-   
 @endsection
-
-
-
-
-
-
-
-
-

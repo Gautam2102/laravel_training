@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,51 +19,24 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', function () 
 {
-    if(!session()->has('id'))
-    {
-        return view('user_includes.Home');
-    }
-        return redirect('dashboard');
+     return view('welcome');
+   
 });
 
-//  user signup 
-Route::view('/signup','user_includes.signup');
-
-// user signin
-Route::view('/signin','user_includes.signin');
-
-// insert form data
-Route::post('/insert',[UserController::class,'insert']);
-
-// login
-Route::post('/login',[UserController::class,'login']);
-
-// view post form
-Route::view('/add-post','addpost');
-
-// Add post 
-Route::post('/add-post',[AdminController::class,'addpost']);
-
+Auth::routes();
+// home 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 // show post
-Route::get('/show-post',[AdminController::class,'showpost']);
+Route::get('/show', [HomeController::class, 'show'])->name('show');
 
-// Edit Post
-Route::get('/editpost/{id}',[AdminController::class,'editpost']);
+// addpost according to get
+Route::get('/addpost', [HomeController::class, 'addpost'])->name('addpost');
 
-// Delete Post
-Route::get('/deletepost/{id}',[AdminController::class,'deletepost']);
+// insert post
+Route::post('/addpost', [HomeController::class, 'insertpost'])->name('insertpost');
 
-// logout
-Route::get('/logout',[AdminController::class,'logout']);
+// insert post
+Route::get('/editpost/{id}', [HomeController::class, 'editpost']);
 
-// update post
-Route::post('/postupdate',[AdminController::class,'postupdate']);
-
-// Middleware
-Route::group(['middleware' => 'CustAuth'], function () {
-     Route::get('dashboard', function () {
-         return view('dashboard');
-     });
- });
-
-
+// Delete post
+Route::get('/deletepost/{id}', [HomeController::class, 'deletepost']);
