@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                   Hello  {{Auth::user()->name}} You are logged in date {{date('Y-m-d ')}}
                 </div>
             </div>
         </div>
