@@ -3,6 +3,11 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+@php( $Getcountrylist = \App\Models\Country::all()) 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -10,9 +15,10 @@
                 <div class="card-header text-center text-info">{{ __('Update Post') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('addpost') }}" enctype='multipart/form-data'>
+                    <form method="POST" action="{{ route('updatepost') }}" enctype='multipart/form-data'>
                         @csrf
-
+                        <input type="hidden" class="form-control" name="id" value="{{$data->id}}">
+                        <input type="hidden" class="form-control" name="user_id" value="{{$data->user_id}}">
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 
@@ -57,33 +63,27 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row">
-                            <label for="image"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Upload Image') }}</label>
-
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Select Country') }}</label>
                             <div class="col-md-6">
-
-
-                                <input type="file" name="image" value="{{$data->image }}" class="form-control" />
-
-                                @if ("{{asset('images/'.$data->images) }}")
-                                <img src="{{asset('images/' .$data->image) }}" width="100px" height="100px" class="pt-3"
-                                    type="file" name="image">
-                                @else
-                                <p>No image found</p>
-                                @endif
-
-
-
-                                @error('image')
+                           <select name="country" id="roles" class="form-control" >
+                        
+                           @foreach ($Getcountrylist as $Country)
+  
+                            <option value="{{$Country->name}}"{{$data->country== $Country->name ? 'selected' : ''}}>{{$Country->name}}</option>
+                            @endforeach
+                            
+                                </select>
+                                
+                                </div>
+                                @error('body')
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
                         </div>
-
+                       
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary btn-block">
@@ -97,5 +97,14 @@
         </div>
     </div>
 </div>
+<script>
 
+$(document).ready(function(){
+
+    $('#roles').select2();
+
+});
+
+
+</script>
 @endsection

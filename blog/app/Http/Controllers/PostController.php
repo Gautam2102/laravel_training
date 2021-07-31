@@ -10,13 +10,14 @@ class PostController extends Controller
     //one to many relationship
 
 // add post
-public function addPost(){
+public function addPost()
+{
 
-$post= new Post();
-$post->title=" First Post Title";
-$post->body="First post Desciption";
-$post->save();
-return "Post has been created";
+    $post= new Post();
+    $post->title=" First Post Title";
+    $post->body="First post Desciption";
+    $post->save();
+    return "Post has been created";
 }
 // add comment
 public function addComment($id){

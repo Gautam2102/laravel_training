@@ -23,6 +23,7 @@ Route::get('/', function ()
    
 });
 
+
 Auth::routes();
 // home 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -38,5 +39,24 @@ Route::post('/addpost', [HomeController::class, 'insertpost'])->name('insertpost
 // insert post
 Route::get('/editpost/{id}', [HomeController::class, 'editpost'])->name('editpost');
 
+// Update post
+Route::post('/updatepost',[HomeController::class, 'updatepost'])->name('updatepost');
+
 // Delete post
 Route::get('/deletepost/{id}', [HomeController::class, 'deletepost'])->name('deletepost');
+
+// Roles && permissions view
+Route::get('/permission',[HomeController::class,'permission']);
+
+// load data from ajax on show blade file
+Route::get('xyz',[HomeController::class,'showdata'])->name('xyz');
+
+// send Email
+// Route::get('Sendemail',[HomeController::class,'sendEmail'])->name('sendemail');
+
+// Event and listner
+// Route::get('Event',[HomeController::class,'Event'])->name('event');
+
+Route::get('product', [HomeController::class, 'product']);
+
+

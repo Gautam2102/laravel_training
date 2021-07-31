@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-<div class="container mb-5"style="margin-top:100px;border-radius:30px;">
+<div class="container "style="margin-top:100px;margin-bottom:100px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
