@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 
 class ElectricityController extends Controller
 {
-    //
+    //display input form
     public function index()
     {
         $city = City::all();
         return view('welcome', ['city' => $city]);
     }
 
+    // calculate unit according to city wise
     public function create(Request $request)
     {
         $request->validate([
