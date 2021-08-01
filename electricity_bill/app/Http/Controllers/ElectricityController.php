@@ -29,9 +29,11 @@ class ElectricityController extends Controller
             if ($request->unit >= $row->start_range && $request->unit <= $row->end_range) {
                 $add = $request->unit * $row->unit_price;
                 $unit=$request->unit;
+                $unit_price=$row->unit_price;
                 $city= City::where('id', $city_id)->first();
-                return view('show')->with(['add' => $add,'unit' => $unit,'row' => $city]);
+                return view('show')->with(['add' => $add,'unit' => $unit,'row' => $city,'unit_prices'=> $unit_price]);
             }
+            
 
         }
 
