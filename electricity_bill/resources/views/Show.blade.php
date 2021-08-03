@@ -13,13 +13,14 @@
 <body>
     <div class="cont">
         <h3 style="color:green;">Electricity Bill</h3>
+       
         <br />
         <br />
 
-        <h4>City :- <span style="padding-left:30px;">{{$row->city}}</span> <span style="float:right;">Per Unit Price :- {{$unit_prices}} Rs/-</span></h4><br />
+        <h4>City :- <span style="padding-left:30px;">{{$row->city}}</span> </h4><br />
 
         <h4>Total Unit :- <span style="padding-left:30px;">{{$unit}}</span></h4> <br />
-        <h4>Total amount to be Paid :- <span style="padding-left:30px;">{{$add}} Rs/-</span></h4> <br />
+        <h4>Total amount to be Paid :- <span style="padding-left:30px;">&ensp;=&ensp;{{$add}} Rs/-</span></h4> <br />
     </div>
 </body>
 
