@@ -58,7 +58,7 @@ class AbcController extends Controller
         } elseif ($request->units <= 250) {
             $amount = (50 * 5) + ((100 - 50) * 8) + ($request->units - 100) * 12;
         } else {
-            
+            $amount=(50 * 5) + ((100 - 50) * 8) + ((250-100) * 12) + ($request->units - 250) * 15;
         }
 
         $insert = new Genbill;
