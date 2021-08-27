@@ -49,6 +49,12 @@ class AbcController extends Controller
     }
 
     // calculate bill
+    
+    // 1 – 50 units : 5 rs/ unit
+    // 51-100 units : 8 rs/ unit
+    // 101-250 units : 12rs/unit
+    // 250-unlimited : 15 rs/unit  
+
     public function billGenrate(BillPostRequest $request)
     {
         if ($request->units <= 50) {
