@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BillPostRequest;
 use App\Http\Requests\StorePostRequest;
+use App\Models\Admin;
 use App\Models\Genbill;
 use App\Models\User;
 use DataTables;
@@ -14,7 +15,7 @@ class AbcController extends Controller
     // view homepage
     public function index()
     {
-        return view('home');
+        return view('login');
     }
     // insert data
     public function create(StorePostRequest $request)
@@ -127,6 +128,19 @@ class AbcController extends Controller
 
         return view('billlist');
 
+    }
+
+   
+    public function postadmin(Request $request)
+    {
+        $data = Admin::where(['name' => $request->username, 'password' => $request->password])->first();
+        if ($data) {
+            $request->session()->put('id', $data->id);
+            return redirect('show');
+
+        } else {
+            return redirect('login')->with('message','wrong credentials');
+        }
     }
 
 }

@@ -29,6 +29,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
+      @if(session()->has('id'))
       <li class="nav-item">
         <a class="nav-link" href="{{ route('home')}}">Add Custumer</a>
       </li>
@@ -38,6 +39,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('users.billlist')}}">Bill List </a>
       </li>
+      @endif
     </ul>
    
   </div>

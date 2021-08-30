@@ -18,7 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 // index page
-Route::get('/home',[AbcController::class,'index'])->name('home');
+
+
+// login page view
+Route::get('/login',[AbcController::class,'index'])->name('login');
+
+    
+Route::post('/admin',[AbcController::class,'postadmin'])->name('postadmin');
+
+
+
+Route::group(['middleware'=>'admin'],function(){
+
+    Route::get('/home',[AbcController::class,'index'])->name('home');
 
 // post data 
 Route::post('/postdata',[AbcController::class,'create'])->name('postdata');
@@ -43,6 +55,8 @@ Route::post('/updatedata',[AbcController::class,'updatecustumer'])->name('update
 
 // fetch bill list
 Route::get('/billlist',[AbcController::class,'billlist'])->name('users.billlist');
+
+});
 
 
 

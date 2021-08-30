@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// get user data
+Route::get('/read',[ApiController::class,'read']);
+Route::post('admin',[ApiController::class,'loginAuthenticated']);
+Route::post('/register',[ApiController::class,'register']);
