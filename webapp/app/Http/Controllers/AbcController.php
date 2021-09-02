@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BillPostRequest;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Admin;
+use App\Models\Citi;
 use App\Models\Genbill;
+use App\Models\Slab;
 use App\Models\User;
 use DataTables;
+use Hash;
+use PDF;
 use Illuminate\Http\Request;
 
 class AbcController extends Controller
@@ -16,6 +20,13 @@ class AbcController extends Controller
     public function index()
     {
         return view('login');
+
+    }
+
+    public function home()
+    {
+        $city = Citi::All();
+        return view('home', ['city' => $city]);
     }
     // insert data
     public function create(StorePostRequest $request)
@@ -58,27 +69,64 @@ class AbcController extends Controller
 
     public function billGenrate(BillPostRequest $request)
     {
-        if ($request->units <= 50) {
-            $amount = $request->units * 5;
-        } elseif ($request->units <= 100) {
-            $amount = ((50 * 5) + ($request->units - 50) * 8);
-        } elseif ($request->units <= 250) {
-            $amount = (50 * 5) + ((100 - 50) * 8) + ($request->units - 100) * 12;
-        } else {
-            $amount = (50 * 5) + ((100 - 50) * 8) + ((250 - 100) * 12) + ($request->units - 250) * 15;
+
+        $city = Slab::where('city_id', $request->id)->get();
+        $city_name = Citi::where('id', $request->id)->first();
+
+        // check id and fetch data array one by one
+        if ($city[0]->id) {
+            $u_price = $city[0]->unit_price;
+            $start_range = $city[0]->start_range;
+            $end_range = $city[0]->end_range;
+        }
+
+        if ($city[1]->id) {
+            $u1_price = $city[1]->unit_price;
+            $start1_range = $city[1]->start_range;
+            $end1_range = $city[1]->end_range;
+        }
+
+        if ($city[2]->id) {
+            $u2_price = $city[2]->unit_price;
+            $start2_range = $city[2]->start_range;
+            $end2_range = $city[2]->end_range;
+        }
+        // check condition and fetch slab wise range and calculate
+
+        foreach ($city as $row) {
+            if ($request->unit >= $row->start_range && $request->unit <= $row->end_range) {
+
+                $id = $row->id;
+                if ($id == $city[0]->id) {
+                    $add = $request->unit * $u_price;
+
+                } elseif ($id == $city[1]->id) {
+                    $add = ($end_range * $u_price) + ($request->unit - $end_range) * $u1_price;
+
+                } elseif ($id == $city[2]->id) {
+                    $add = ($end_range * $u_price) + (($end1_range - $end_range) * $u1_price) + ($request->unit - $end1_range) * $u2_price;
+
+                }
+
+            } else {
+                $add = ($end_range * $u_price) + (($end1_range - $end_range) * $u1_price) + (($end2_range - $end1_range) * $u2_price) + ($request->unit - $end2_range) * 15;
+
+            }
+
         }
 
         $insert = new Genbill;
         $insert->name = $request->name;
         $insert->months = $request->month;
-        $insert->units = $request->units;
-        $insert->amounts = $amount;
+        $insert->units = $request->unit;
+        $insert->city = $city_name->city;
+        $insert->amounts = $add;
         $insert->save();
         return redirect('billlist')->with('message', 'one custumer bill is genrated');
 
     }
 
-    // edit custumer data
+    // genrate bill
     public function genratefillform($id)
     {
         $data = User::where('id', $id)->first();
@@ -122,6 +170,8 @@ class AbcController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
+                    $btn = '<a href="/generate-pdf/' . $row->id . '" class="genbill btn btn-primary btn-sm">Genbill</a>';
+                    return $btn;
                 })->rawColumns(['action'])
                 ->make(true);
         }
@@ -130,17 +180,28 @@ class AbcController extends Controller
 
     }
 
-   
+    // login Admin
     public function postadmin(Request $request)
     {
-        $data = Admin::where(['name' => $request->username, 'password' => $request->password])->first();
-        if ($data) {
+        $data = Admin::where('name', $request->username)->first();
+
+        if (Hash::check($request->password, $data->password)) {
             $request->session()->put('id', $data->id);
             return redirect('show');
 
         } else {
-            return redirect('login')->with('message','wrong credentials');
+            return redirect('login')->with('message', 'wrong credentials');
         }
+    }
+    
+    // Genrate Electricity Bill
+    public function generatePDF($id)
+    { 
+        $genPDF= Genbill::where('id',$id)->first();
+        
+        $pdf = PDF::loadView('billPDF');
+    
+        return $pdf->download('electricitybill.pdf');
     }
 
 }

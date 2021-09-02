@@ -14,8 +14,10 @@
                 <th>No</th>
                 <th>Name</th>
                 <th>Month</th>
+                <th>city</th>
                 <th>Units</th>
                 <th>Total Amount</th>
+                <th>Action</th>
                
             </tr>
         </thead>
@@ -46,6 +48,10 @@ $(function() {
                 name: 'months'
             },
             {
+                data: 'city',
+                name: 'city'
+            },
+            {
                 data: 'units',
                 name: 'units'
             },
@@ -53,8 +59,12 @@ $(function() {
                 data: 'amounts',
                 name: 'amounts'
             },
-            
-           
+            {
+            data: 'action',
+                name: 'action',
+                orderable: false,
+                searchable: false
+            },
         ]
     });
 

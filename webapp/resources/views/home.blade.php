@@ -55,11 +55,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="city" placeholder="City *" />
+                                    
                                     @error('city')
                                     <div class="text-danger">{{$message}}</div>
 
                                     @enderror
+                                    <select class="form-control" name="city" placeholder="City *">
+
+                                    <option value="">Select City</option>
+                                    @foreach($city as $list)
+                                    <option value="{{$list->city}}">{{$list->city}}</option>
+                                    @endforeach
+                                    </select>
                                 </div>
                                 <button type="submit" class="btnSubmit  btn-block">Submit</button>
                             </div>

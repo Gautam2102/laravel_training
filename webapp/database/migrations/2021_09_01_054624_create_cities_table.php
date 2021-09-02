@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenbillsTable extends Migration
+class CreateCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateGenbillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('genbills', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('months');
             $table->string('city');
-            $table->string('units');
-            $table->string('amounts');
-          
+            $table->timestamps();
         });
     }
 
@@ -31,6 +27,6 @@ class CreateGenbillsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genbills');
+        Schema::dropIfExists('cities');
     }
 }

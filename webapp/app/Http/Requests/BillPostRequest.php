@@ -27,7 +27,7 @@ class BillPostRequest extends FormRequest
             //
             'name'=>'required',
             'month'=>'required',
-            'units'=>'required'
+            'unit'=>'required'
         ];
     }
 }

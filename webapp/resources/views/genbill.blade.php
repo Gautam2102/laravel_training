@@ -18,23 +18,39 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="name" placeholder="Your Name *"
-                                    value="{{$data->name}}" />
+                                <input type="hidden" class="form-control" name="name" placeholder="Enter Name"
+                                    value="{{$data->name}}">
+                                <input type="text" class="form-control" placeholder="Your Name *"
+                                    value="{{$data->name}}" disabled />
                                 @error('name')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
                             <div class="form-group">
+                                <input type="hidden" class="form-control" name="id" placeholder="Enter City"
+                                    value="{{$data->id}}">
+                                <input type="text" class="form-control" placeholder="Enter City" value="{{$data->city}}"
+                                    disabled>
+                                @error('month')
+                                <div class="text-danger">{{$message}}</div>
+
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
 
                                 <select class="form-control" name="month">
                                     <option value="">Select Month </option>
-                                    <?php  for($i = 1; $i <= 12; $i++){  ?>
+                                    <?php for ($i = 1; $i <= 12; $i++) {?>
 
-                                    <option value="<?= date('M', strtotime('2020-'.$i.'-01')) ?>">
-                                        <?= date('M', strtotime('2020-'.$i.'-01')) ?>
+                                    <option value="<?=date('M', strtotime('2020-' . $i . '-01'))?>">
+                                        <?=date('M', strtotime('2020-' . $i . '-01'))?>
                                     </option>
-                                    <?php }  ?>
+                                    <?php }?>
 
                                 </select>
                                 @error('month')
@@ -42,19 +58,18 @@
 
                                 @enderror
                             </div>
-                        </div>
-                        <div class="col-md-6">
+
                             <div class="form-group">
-                                <input type="text" class="form-control" name="units" placeholder=" Enter Units Cosume*"
+                                <input type="text" class="form-control" name="unit" placeholder=" Enter Units Cosume*"
                                     value="" />
-                                @error('units')
+                                @error('unit')
                                 <div class="text-danger">{{$message}}</div>
 
                                 @enderror
                             </div>
 
-
                         </div>
+
                         <button type="submit" class="btnSubmit  btn-block">Submit</button>
                     </div>
                 </div>
